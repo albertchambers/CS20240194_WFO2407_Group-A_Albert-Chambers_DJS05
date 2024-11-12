@@ -1,10 +1,11 @@
 /**
+ * "ADD", "SUBTRACT", "RESET"
  * @typedef Action
- * @property {string} type - "ADD", "SUBTRACT", "RESET".
+ * @property {string} type
  */
 
 /**
- * Redux-inspired store to manage a counter's state.
+ * Manage a counter's state.
  * @param {Function} reducer
  * @param {number} initialState
  * @returns {Object}
