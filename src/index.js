@@ -1,6 +1,6 @@
 import { createStore } from './model/store';
 import { tallyReducer } from './model/reducer';
-import { addAction, subtractAction, resetAction } from './model/actions';
+import { addAction, subtractAction, resetAction } from './model/action';
 
 const store = createStore(tallyReducer);
 

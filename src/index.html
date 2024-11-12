@@ -32,9 +32,13 @@
     <button id="reset">Reset</button>
 
     <script type="module">
-      import { createStore } from "./module/store.js";
-      import { tallyReducer } from "./module/reducer.js";
-      import { increment, decrement, reset } from "./module/actions.js";
+      import { createStore } from "./model/store.js";
+      import { tallyReducer } from "./model/reducer.js";
+      import {
+        addAction,
+        subtractAction,
+        resetAction,
+      } from "./model/action.js";
 
       // Initialize the store with the reducer
       const store = createStore(tallyReducer);
@@ -52,15 +56,15 @@
 
       // Event listeners for buttons to dispatch actions
       document.getElementById("increment").addEventListener("click", () => {
-        store.dispatch(increment());
+        store.dispatch(addAction());
       });
 
       document.getElementById("decrement").addEventListener("click", () => {
-        store.dispatch(decrement());
+        store.dispatch(subtractAction());
       });
 
       document.getElementById("reset").addEventListener("click", () => {
-        store.dispatch(reset());
+        store.dispatch(resetAction());
       });
     </script>
   </body>
