@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redux-inspired Tally App</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+        margin-top: 50px;
+      }
+      #counter {
+        font-size: 2em;
+        margin: 20px;
+      }
+      button {
+        margin: 5px;
+        padding: 10px 20px;
+        font-size: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Counter App</h1>
+    <div id="counter">0</div>
+    <button id="increment">Increment</button>
+    <button id="decrement">Decrement</button>
+    <button id="reset">Reset</button>
+
+    <script type="module">
+      import { createStore } from "./module/store.js";
+      import { tallyReducer } from "./module/reducer.js";
+      import { increment, decrement, reset } from "./module/actions.js";
+
+      // Initialize the store with the reducer
+      const store = createStore(tallyReducer);
+
+      // Function to update the displayed counter
+      function render() {
+        document.getElementById("counter").innerText = store.getState();
+      }
+
+      // Subscribe to the store so the UI updates on state change
+      store.subscribe(render);
+
+      // Initial render
+      render();
+
+      // Event listeners for buttons to dispatch actions
+      document.getElementById("increment").addEventListener("click", () => {
+        store.dispatch(increment());
+      });
+
+      document.getElementById("decrement").addEventListener("click", () => {
+        store.dispatch(decrement());
+      });
+
+      document.getElementById("reset").addEventListener("click", () => {
+        store.dispatch(reset());
+      });
+    </script>
+  </body>
+</html>
