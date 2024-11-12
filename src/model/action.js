@@ -1,15 +1,13 @@
-// src/store/store.js
-
 /**
  * @typedef Action
- * @property {string} type - Type of action, e.g., "ADD", "SUBTRACT", "RESET".
+ * @property {string} type - "ADD", "SUBTRACT", "RESET".
  */
 
 /**
- * Creates a Redux-inspired store to manage a counter's state.
- * @param {Function} reducer - A function that determines state updates based on actions.
- * @param {number} initialState - Initial value of the state.
- * @returns {Object} Store - An object with methods to manage and observe state.
+ * Redux-inspired store to manage a counter's state.
+ * @param {Function} reducer
+ * @param {number} initialState
+ * @returns {Object}
  */
 export function createStore(reducer, initialState = 0) {
   let state = initialState;
@@ -18,7 +16,7 @@ export function createStore(reducer, initialState = 0) {
   return {
     /**
      * Returns the current state.
-     * @returns {number} Current state value.
+     * @returns {number}
      */
     getState() {
       return state;
@@ -26,7 +24,7 @@ export function createStore(reducer, initialState = 0) {
 
     /**
      * Dispatches an action to update the state.
-     * @param {Action} action - The action to handle.
+     * @param {Action} action
      */
     dispatch(action) {
       state = reducer(state, action);
@@ -35,8 +33,8 @@ export function createStore(reducer, initialState = 0) {
 
     /**
      * Adds a listener to be called on state changes.
-     * @param {Function} listener - Function called on state change.
-     * @returns {Function} Unsubscribe - Function to remove this listener.
+     * @param {Function} listener
+     * @returns {Function}
      */
     subscribe(listener) {
       listeners.push(listener);
