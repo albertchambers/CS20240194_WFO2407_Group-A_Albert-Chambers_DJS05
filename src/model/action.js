@@ -1,46 +1,17 @@
 /**
- * @typedef Action
- * @property {string} type - "ADD", "SUBTRACT", "RESET".
- */
-
-/**
- * Redux-inspired store to manage a counter's state.
- * @param {Function} reducer
- * @param {number} initialState
+ * Action creator for incrementing the counter.
  * @returns {Object}
  */
-export function createStore(reducer, initialState = 0) {
-  let state = initialState;
-  let listeners = [];
+export const addAction = () => ({ type: "ADD" });
 
-  return {
-    /**
-     * Returns the current state.
-     * @returns {number}
-     */
-    getState() {
-      return state;
-    },
+/**
+ * Action creator for decrementing the counter.
+ * @returns {Object}
+ */
+export const subtractAction = () => ({ type: "SUBTRACT" });
 
-    /**
-     * Dispatches an action to update the state.
-     * @param {Action} action
-     */
-    dispatch(action) {
-      state = reducer(state, action);
-      listeners.forEach(listener => listener(state));
-    },
-
-    /**
-     * Adds a listener to be called on state changes.
-     * @param {Function} listener
-     * @returns {Function}
-     */
-    subscribe(listener) {
-      listeners.push(listener);
-      return () => {
-        listeners = listeners.filter(l => l !== listener);
-      };
-    }
-  };
-}
+/**
+ * Action creator for resetting the counter.
+ * @returns {Object}
+ */
+export const resetAction = () => ({ type: "RESET" });
